@@ -23,7 +23,7 @@ public class Mines extends JFrame {
         add(new Board(statusbar));
 
         //für Test deaktiviert
-        setVisible(true);
+        // setVisible(true);
     }
 
     public static void main(String[] args) {
