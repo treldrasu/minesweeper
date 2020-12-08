@@ -24,6 +24,11 @@ public class Mines extends JFrame {
 
         //für Test deaktiviert
         setVisible(true);
+
+        /**
+         * 
+         * iuahdfäoausdgha+äouisdh
+         */
     }
 
     public static void main(String[] args) {
