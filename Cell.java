@@ -50,7 +50,7 @@ public class Cell {
     }
 
     public boolean isCoveredMine() {
-        return this.cover && this.mine;
+        return this.cover || this.mine;
     }
 
     public void checked() {

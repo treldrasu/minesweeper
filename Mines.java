@@ -4,8 +4,9 @@ import javax.swing.JFrame;
 import javax.swing.JLabel;
 
 public class Mines extends JFrame {
-    private final int WIDTH = 250;
-    private final int HEIGHT = 290;
+    private static final long serialVersionUID = 1L;
+    private final int WIDTH = 300;
+    private final int HEIGHT = 490;
 
     private JLabel statusbar;
 
@@ -21,7 +22,7 @@ public class Mines extends JFrame {
 
         add(new Board(statusbar));
 
-        setResizable(false);
+        //für Test deaktiviert
         setVisible(true);
     }
 

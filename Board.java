@@ -5,12 +5,12 @@ import java.awt.event.MouseEvent;
 
 import java.util.Random;
 
-import javax.swing.BorderFactory;
 import javax.swing.ImageIcon;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 
 public class Board extends JPanel {
+    private static final long serialVersionUID = 1L;
     // Constants
     private final int CELL_SIZE  = 15;
     private final int NUM_IMAGES = 13;
@@ -293,7 +293,6 @@ public class Board extends JPanel {
                     return;
                 }
 
-                String str;
                 if (!pressedCell.isMarked()) {
                     pressedCell.setMark(true);
                     remainderMines--;
