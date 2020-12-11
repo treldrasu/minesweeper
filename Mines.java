@@ -5,8 +5,8 @@ import javax.swing.JLabel;
 
 public class Mines extends JFrame {
     private static final long serialVersionUID = 1L;
-    private final int WIDTH = 300;
-    private final int HEIGHT = 490;
+    private final int WIDTH = 257;
+    private final int HEIGHT = 300;
 
     private JLabel statusbar;
 
@@ -20,15 +20,13 @@ public class Mines extends JFrame {
         statusbar = new JLabel("");
         add(statusbar, BorderLayout.SOUTH);
 
-        add(new Board(statusbar));
+        add(new Board(statusbar), BorderLayout.CENTER);
 
+        setResizable(false);
+        pack();
         //für Test deaktiviert
         setVisible(true);
 
-        /**
-         * 
-         * iuahdfäoausdgha+äouisdh
-         */
     }
 
     public static void main(String[] args) {

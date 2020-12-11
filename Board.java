@@ -1,7 +1,5 @@
 import java.awt.Graphics;
 import java.awt.Image;
-import java.awt.event.MouseAdapter;
-import java.awt.event.MouseEvent;
 
 import java.util.Random;
 
@@ -20,17 +18,18 @@ public class Board extends JPanel {
     private final int IMAGE_MARK       = 11;
     private final int IMAGE_WRONG_MARK = 12;
 
-    private JLabel statusBar;
+    JLabel statusBar;
 
     private int totalMines = 40;
-    private int remainderMines;
+    int remainderMines;
 
-    private int rows = 16, columns = 16;
+    int rows = 16;
+	int columns = 16;
 
-    private Cell[][] cells;
+    Cell[][] cells;
     private Image[] img;
 
-    private boolean inGame;
+    boolean inGame;
 
     public Board(JLabel statusBar) {
         this.statusBar = statusBar;
@@ -42,7 +41,7 @@ public class Board extends JPanel {
         }
 
         this.setDoubleBuffered(true);
-        this.addMouseListener(new MinesAdapter());
+        this.addMouseListener(new MinesAdapter(this));
         this.newGame();
     }
 
@@ -262,63 +261,6 @@ public class Board extends JPanel {
         for (int i = 0; i < this.rows; ++i) {
             for (int j = 0; j < this.columns; ++j) {
                 this.cells[i][j].clearChecked();
-            }
-        }
-    }
-
-    class MinesAdapter extends MouseAdapter {
-        public void mousePressed(MouseEvent e) {
-            int pressedCol = e.getX() / CELL_SIZE;
-            int pressedRow = e.getY() / CELL_SIZE;
-
-            boolean doRepaint = false;
-            Cell pressedCell;
-
-            if (!inGame) {
-                newGame();
-                repaint();
-            }
-
-            if ((pressedCol < 0 || pressedCol >= columns)
-                || (pressedRow < 0 || pressedRow >= rows)) {
-                return;
-            }
-
-            pressedCell = cells[pressedRow][pressedCol];
-
-            if (e.getButton() == MouseEvent.BUTTON3) {
-                doRepaint = true;
-
-                if (!pressedCell.isCovered()) {
-                    return;
-                }
-
-                if (!pressedCell.isMarked()) {
-                    pressedCell.setMark(true);
-                    remainderMines--;
-                } else {
-                    pressedCell.setMark(false);
-                    remainderMines++;
-                }
-
-                statusBar.setText(Integer.toString(remainderMines));
-            } else {
-                if (pressedCell.isMarked() || !pressedCell.isCovered()) {
-                    return;
-                }
-
-                doRepaint = true;
-
-                pressedCell.uncover();
-                if (pressedCell.isMine()) {
-                    inGame = false;
-                } else if (pressedCell.isEmpty()) {
-                    findEmptyCells(pressedRow, pressedCol, 0);
-                }
-            }
-
-            if (doRepaint) {
-                repaint();
             }
         }
     }
